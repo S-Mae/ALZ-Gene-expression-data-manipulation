@@ -1,15 +1,30 @@
-# ALZ Gene Expression Data Manipulation 
+# ALZ Gene Expression Data Manipulation & Visualization
+This repository contains R scripts for manipulation, analysis, and visualizing gene expression data from the **GSE199241** dataset. It integrates metadata with raw count data, performs essential transformations, and generates insightful visualizations using **ggplot2**.
 
-This repository contains R scripts for processing and analyzing gene expression data from the **GSE199241** dataset. It integrates metadata with raw count data and performs essential transformations using `tidyverse` and `dplyr`.
+## Features
+✔️ Retrieves raw count data from GEO
+✔️ Processes metadata and merges it with expression data
+✔️ Formats, sorts, and filters genes based on expression
+✔️ Visualizes gene expression data using ggplot2
+✔️ Prepares data for differential analysis
 
-## 📌 Features  
-✔️ Retrieves raw count data from GEO  
-✔️ Processes metadata and merges it with expression data  
-✔️ Formats, sorts, and filters genes based on expression  
-✔️ Prepares data for visualization and differential analysis  
+## 📊 Data Visualization
+The repository now includes multiple visualizations:
 
-## 🔧 Installation  
+**Barplot:** Expression levels of selected genes
+
+**Density Plot:** Distribution of gene expression
+
+**Boxplot:** Expression variation across genes
+
+**Scatterplot:** Correlation between genes
+
+**Heatmap:** Comparison of multiple genes across samples
+
+## Installation
 Ensure you have R installed along with the required libraries:
+**install.packages(c("dplyr", "tidyverse", "ggplot2", "GEOquery"))**
 
-```r
-install.packages(c("dplyr", "tidyverse", "GEOquery"))
+## Run the R scripts in sequence for data processing and visualization:
+source("ALZ_Gene_Expression_Data_Manipulation.R")
+source("ALZ_Data_Visualization_with_ggplot2.R")
