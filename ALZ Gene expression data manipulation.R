@@ -30,42 +30,44 @@ metadata.modified <- metadata %>%
   mutate(`cell line` = gsub("cell line:", "", `cell line`)) %>%
   mutate(treatment = gsub("treatment:", "", treatment)) 
 
-#to determine the label of the gene column 
+# to determine the label of the gene column 
 gene_col <- colnames(dat)[1]
 
-#if the gene column is not properly labelled
-#run this dat.long <- dat %>%
+# if the gene column is not properly labelled
+# run this dat.long <- dat %>%
           #rename(gene = X) %>%
           #gather (key = "samples", value = "FPKM", -gene) %>%
           #head()                                               
-#otherwise gather without renaming              
+# otherwise gather without renaming              
 
-#reshaping data using tidyverse 
+# reshaping data using tidyverse 
 dat.long <- dat %>%
-  gather (key = "samples", value = "FPKM", -gene) %>%
-  head()
+  gather (key = "samples", value = "FPKM", -gene) 
+  
+head(dat.long)
 
-#check for sample name mismatches between dat.long and metadata.modified before proceeding to join
+# check for sample name mismatches between dat.long and metadata.modified before proceeding to join
 setdiff(trimws(unique(dat.long$samples)), trimws(unique(metadata.modified$title)))
 setdiff(trimws(unique(metadata.modified$title)), trimws(unique(dat.long$samples)))
 
-#if mismatches exist, format with gsub 
-#this is done to format the datasets in dat.long and metadata.modified for conformity
+# if mismatches exist, format with gsub 
+# this is done to format the datasets in dat.long and metadata.modified for conformity
 dat.long$samples <- gsub("\\.", "-", dat.long$samples)
 
-#join dataframes = dat.long + metadata.modified
+# join dataframes = dat.long + metadata.modified
 dat.long <- dat.long %>%
   left_join(metadata.modified, by = c("samples" = "title")) 
 
-#sort in ascending order
+# sort in ascending order
 dat.long.sorted <- dat.long %>% arrange(FPKM)
 
-#sort in descending order
+# sort in descending order
 dat.long.sorted <- dat.long %>% arrange(desc(FPKM))
 
-#filter based on relevance
-dat.long.filtered <- dat.long %>% filter(FPKM > 0)
+# filter based on relevance
+dat.long.filtered <- dat.long %>% filter(FPKM > 1)
 
+table(dat.long$gene)
 
 
 
