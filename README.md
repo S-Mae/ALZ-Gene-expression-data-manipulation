@@ -32,4 +32,4 @@ Ensure you have R installed along with the required libraries:
 ## Run the R scripts in sequence for data processing and visualization:
 source("ALZ_Gene_Expression_Data_Manipulation.R")
 
-source("ALZ_Data_Visualization_with_ggplot2.R")
+source("ALZ_Data_Visualization_using_ggplot2.R")
